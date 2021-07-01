@@ -5,7 +5,7 @@ import sty from "_styles";
 const CounterHomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={sty.container}>
-      <Text style={sty.title}>Screen : Counter Home</Text>
+      <Text style={sty.title}>Screen : Counter History</Text>
 
       <TouchableHighlight onPress={() => navigation.navigate("Login")}>
         <Text>Go to Login</Text>

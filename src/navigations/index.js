@@ -1,12 +1,14 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import AuthNavigator from "./auth-navigator";
-import AppNavigator from "./app-navigator";
+import CounterAppNavigator from "./app-counter-navigator";
+import KitchenAppNavigator from "./app-kitchen-navigator";
 
 const RootNavigator = createSwitchNavigator(
   {
     Auth: AuthNavigator,
-    App: AppNavigator,
+    CounterAppNavigator: CounterAppNavigator,
+    KitchenAppNavigator: KitchenAppNavigator,
   },
   {
     initialRouteName: "Auth",

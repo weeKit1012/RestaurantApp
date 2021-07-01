@@ -1,5 +1,6 @@
-import { createStackNavigator } from "react-navigation-stack";
+import React, { useState, useEffect } from "react";
 
+import { createStackNavigator } from "react-navigation-stack";
 import LoginScreen from "_scenes/login";
 
 const AuthNavigatorConfig = {
