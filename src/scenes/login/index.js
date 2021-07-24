@@ -1,3 +1,5 @@
+//WARNING: DONT SIMPLY MODIFY THIS FILE
+
 import React, { useState, useEffect } from "react";
 import {
   View,

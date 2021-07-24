@@ -1,3 +1,5 @@
+//WARNING: DONT SIMPLY MODIFY THIS FILE
+
 import * as firebase from "firebase";
 import "firebase/firestore";
 

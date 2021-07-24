@@ -1,3 +1,5 @@
+//WARNING: DONT SIMPLY MODIFY THIS FILE
+
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import AuthNavigator from "./auth-navigator";
