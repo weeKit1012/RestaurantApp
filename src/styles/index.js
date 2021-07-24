@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
@@ -6,11 +5,18 @@ const Styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: "#eaeaea",
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
+  },
+  headerFont: {
+    fontFamily: "fredoka-one-regular",
   },
   title: {
-    fontWeight: "bold",
+    fontFamily: "inter-bold",
+    fontSize: 30,
+  },
+  subTitle: {
+    fontFamily: "inter-regular",
   },
 });
 

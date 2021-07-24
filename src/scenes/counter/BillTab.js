@@ -5,7 +5,7 @@ import sty from "_styles";
 export default function CounterBillTab() {
   return (
     <SafeAreaView style={sty.container}>
-      <Text>This is Bill Tab</Text>
+      <Text style={sty.title}>This is Bill Tab</Text>
     </SafeAreaView>
   );
 }
