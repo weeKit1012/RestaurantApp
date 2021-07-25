@@ -9,7 +9,7 @@ import {
 } from "@expo/vector-icons";
 
 import CounterHistoryTab from "_scenes/counter/HistoryTab";
-import CounterOrderTan from "_scenes/counter/OrderTab";
+import CounterOrderTab from "_scenes/counter/OrderTab";
 import CounterBillTab from "_scenes/counter/BillTab";
 import CounterNotificationTab from "_scenes/counter/NotificationTab";
 
@@ -34,8 +34,8 @@ export default () => {
   };
 
   const CounterRouteConfigs = {
-    CounterOrderTan: {
-      screen: CounterOrderTan,
+    CounterOrderTab: {
+      screen: CounterOrderTab,
       navigationOptions: {
         tabBarLabel: "Order",
         tabBarIcon: ({ focused }) => (

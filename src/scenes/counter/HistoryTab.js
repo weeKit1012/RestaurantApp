@@ -7,6 +7,9 @@ import sty from "_styles";
 
 const CounterHistoryTab = ({ navigation }) => {
   const { toast } = useToast();
+  const userObj = navigation.getParam("userObj");
+  console.log(userObj.userId);
+
   CounterHistoryTabNavigation = navigation;
 
   useEffect(() => {
@@ -20,6 +23,8 @@ const CounterHistoryTab = ({ navigation }) => {
       <TouchableHighlight onPress={() => navigation.navigate("Login")}>
         <Text style={sty.subTitle}>Go to Login</Text>
       </TouchableHighlight>
+
+      <Text style={sty.title}>{userObj.userId}</Text>
     </SafeAreaView>
   );
 };

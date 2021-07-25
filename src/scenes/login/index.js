@@ -20,6 +20,7 @@ import { unixToLocale } from "../../utils/TimeConverter";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState({});
   const [route, setRoute] = useState(null);
 
   let userId = "";
@@ -61,6 +62,8 @@ const LoginScreen = ({ navigation }) => {
         userObj = documentSnapshot.data();
         userObj.userId = userId;
 
+        setUser(userObj);
+
         if (userObj.userRole == "Counter") {
           setRoute("CounterHistoryTab");
         }
@@ -93,7 +96,8 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (route != null) {
-      navigation.navigate(route);
+      console.log(user);
+      navigation.navigate(route, { userObj: user });
     }
   }, [route]);
 

@@ -17,6 +17,7 @@ const ModalPicker = (props) => {
     props.changeModalVisibility(false);
     props.setData(option);
   };
+
   const option = OPTIONS.map((item, index) => {
     return (
       <TouchableOpacity

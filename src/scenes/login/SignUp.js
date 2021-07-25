@@ -11,7 +11,6 @@ import {
   Modal,
   StyleSheet,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
 
 import sty from "_styles";
 import firebase from "./FirebaseConfig";
