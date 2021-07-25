@@ -14,6 +14,7 @@ import { Root } from "react-native-popup-confirm-toast";
 
 import sty from "_styles";
 import firebase from "./FirebaseConfig";
+import global from "./Global";
 import { bottomToast } from "_utils/ToastMessage";
 import { unixToLocale } from "../../utils/TimeConverter";
 
@@ -44,7 +45,6 @@ const LoginScreen = ({ navigation }) => {
         var user = userCredential.user;
 
         userId = user.uid;
-        console.log(userId);
       })
       .catch((err) => {
         var errorCode = err.code;
@@ -78,8 +78,6 @@ const LoginScreen = ({ navigation }) => {
         var errorCode = err.code;
         console.log(errorCode + ": " + err.message);
       });
-
-    console.log(userObj);
   };
 
   const updateTimestamp = async () => {
@@ -96,7 +94,7 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (route != null) {
-      console.log(user);
+      global.user = user;
       navigation.navigate(route, { userObj: user });
     }
   }, [route]);
