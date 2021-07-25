@@ -35,3 +35,46 @@ React Native project for MPMA module
    - Updating the order status (exp: on cooking, finished)
    - Send the order information to the counter once complete
    - Check or look back the past order
+
+## Database Structure
+
+1. users
+
+   - userRole
+   - userStatus
+   - lastLogin
+
+2. foods
+
+   - foodName
+   - foodPrice
+   - foodStatus
+
+3. orders
+
+   - orderFoods(array of foodId)
+   - orderCreatedTime
+   - orderCompletedTime
+   - orderTotal
+   - orderStatus
+   - userId
+
+4. payments
+
+   - paymentMethod
+   - paymentStatus
+   - paymentTimestamp
+   - orderId
+
+### Completed feature
+
+1. Common
+
+   - Login to different role
+   - Register for different role (will be removed later)
+
+2. Counter
+
+3. Customer
+
+4. Kitchen
