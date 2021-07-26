@@ -49,7 +49,7 @@ React Native project for MPMA module
    - foodName
    - foodPrice
    - foodImageUrl
-   - foodStatus
+   - foodStatus (0 = inavailable; 1 = available)
 
 3. orders
 
@@ -57,15 +57,17 @@ React Native project for MPMA module
    - orderCreatedTime
    - orderCompletedTime
    - orderTotal
-   - orderStatus
+   - orderStatus (0 by default, 0 = pending, 1 = confirmed by counter, 2 = completed by kitchen, 3 = Done by counter)
    - userId
 
 4. payments
 
-   - paymentMethod
-   - paymentStatus
+   - paymentMethod (Card, Cash, E-wallet)
+   - paymentStatus (0 by default, 0 = pending, 1 = Success)
    - paymentTimestamp
    - orderId
+
+All timestamp recorded in unix time
 
 ### Completed feature
 
