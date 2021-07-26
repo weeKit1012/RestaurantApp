@@ -8,7 +8,7 @@ import global from "_scenes/login/Global";
 
 const CounterHistoryTab = ({ navigation }) => {
   const { toast } = useToast();
-  const userObj = navigation.getParam("userObj");
+  // const userObj = navigation.getParam("userObj");
   const user = global.user;
 
   CounterHistoryTabNavigation = navigation;
