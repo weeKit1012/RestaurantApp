@@ -17,6 +17,7 @@ React Native project for MPMA module
    - Order food
    - Payment (simple way)
    - Check order summary after counter has confirmed the order
+   - Check if the order is rejected
 
 2. Counter
 
@@ -41,7 +42,7 @@ React Native project for MPMA module
 1. users
 
    - userRole
-   - userStatus
+   - userStatus (1 by default, 0 = banned; 1 = available)
    - lastLogin
 
 2. foods
@@ -57,19 +58,20 @@ React Native project for MPMA module
    - orderCreatedTime
    - orderCompletedTime
    - orderTotal
-   - orderStatus (0 by default, 0 = pending, 1 = confirmed by counter, 2 = completed by kitchen, 3 = Done by counter)
+   - orderStatus (0 by default, 0 = pending; 1 = confirmed by counter; 2 = completed by kitchen; 3 = Done by counter; 4 = rejected)
    - userId
+   - rejectReason
 
 4. payments
 
    - paymentMethod (Card, Cash, E-wallet)
-   - paymentStatus (0 by default, 0 = pending, 1 = Success)
+   - paymentStatus (0 by default, 0 = pending; 1 = Success)
    - paymentTimestamp
    - orderId
 
 All timestamp recorded in unix time
 
-### Completed feature
+## Completed feature
 
 1. Common
 
