@@ -126,6 +126,7 @@ const LoginScreen = ({ navigation }) => {
             value={password}
             onChangeText={setPassword}
             placeholder="Password"
+            secureTextEntry={true}
           />
         </View>
         <View style={localStyle.buttonArea}>
