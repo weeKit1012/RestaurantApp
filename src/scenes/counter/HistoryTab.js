@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { Button, SafeAreaView, Text, TouchableHighlight } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { useToast } from "react-native-styled-toast";
+// import { useToast } from "react-native-styled-toast";
 
 import sty from "_styles";
 import global from "_scenes/login/Global";
 
 const CounterHistoryTab = ({ navigation }) => {
-  const { toast } = useToast();
+  // const { toast } = useToast();
   // const userObj = navigation.getParam("userObj");
   const user = global.user;
 
   CounterHistoryTabNavigation = navigation;
 
-  useEffect(() => {
-    toast({ message: "Login successfully" });
-  }, []);
+  // useEffect(() => {
+  //   toast({ message: "Login successfully" });
+  // }, []);
 
   return (
     <SafeAreaView style={sty.container}>
