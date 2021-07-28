@@ -12,12 +12,13 @@ import CounterHistoryTab from "_scenes/counter/HistoryTab";
 import CounterOrderTab from "_scenes/counter/OrderTab";
 import CounterBillTab from "_scenes/counter/BillTab";
 import CounterNotificationTab from "_scenes/counter/NotificationTab";
+import CounterTab from "_scenes/counter/CounterTab";
 
 import { CounterHistoryTabNavigation } from "./HistoryTab";
 
 export default () => {
   const CounterTabNavigatorConfig = {
-    initialRouteName: "CounterHistoryTab",
+    initialRouteName: "CounterTab",
     tabBarOptions: {
       showLabel: false,
       showIcon: true,
@@ -42,8 +43,8 @@ export default () => {
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <FontAwesome
-              name="reorder"
+            <Ionicons
+              name="fast-food"
               size={24}
               color={focused ? "#fb863c" : "#748c94"}
             />
@@ -123,6 +124,23 @@ export default () => {
           >
             <Ionicons
               name="notifications"
+              size={24}
+              color={focused ? "#fb863c" : "#748c94"}
+            />
+          </View>
+        ),
+      },
+    },
+    CounterTab: {
+      screen: CounterTab,
+      navigationOptions: {
+        tabBarLabel: "Counter",
+        tabBarIcon: ({ focused }) => (
+          <View
+            style={{ alignItems: "center", justifyContent: "center", top: 3 }}
+          >
+            <MaterialIcons
+              name="countertops"
               size={24}
               color={focused ? "#fb863c" : "#748c94"}
             />
