@@ -25,7 +25,7 @@ const CounterHistoryTab = ({ navigation }) => {
         <Text style={sty.subTitle}>Go to Login</Text>
       </TouchableHighlight>
 
-      <Text style={sty.title}>{userObj.userId}</Text>
+      {/* <Text style={sty.title}>{userObj.userId}</Text> */}
       <Text style={sty.title}>{user.lastLogin}</Text>
     </SafeAreaView>
   );
