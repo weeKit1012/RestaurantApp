@@ -65,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
         setUser(userObj);
 
         if (userObj.userRole == "Counter") {
-          setRoute("CounterHistoryTab");
+          setRoute("CounterTab");
         }
         if (userObj.userRole == "Kitchen") {
           setRoute("KitchenHomeScreen");
@@ -110,7 +110,9 @@ const LoginScreen = ({ navigation }) => {
               style={{ height: 50, width: 50 }}
             />
           </View>
-          <View style={{ flex: 0.5 }}>
+          <View style={{ flex: 0.1 }}></View>
+
+          <View style={{ flex: 0.4 }}>
             <Text style={sty.title}>Sign In</Text>
           </View>
         </View>
