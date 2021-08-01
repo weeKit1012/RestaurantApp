@@ -1,18 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
-import {
-  FontAwesome,
-  FontAwesome5,
-  Ionicons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
 import CounterHistoryTab from "_scenes/counter/HistoryTab";
 import CounterOrderTab from "_scenes/counter/OrderTab";
 import CounterBillTab from "_scenes/counter/BillTab";
 import CounterNotificationTab from "_scenes/counter/NotificationTab";
+
 import CounterTab from "_scenes/counter/CounterTab";
+import MenuListScreen from "_scenes/counter/MenuList";
 
 import { CounterHistoryTabNavigation } from "./HistoryTab";
 
@@ -44,8 +41,8 @@ export default () => {
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
             <Ionicons
-              name="fast-food"
-              size={24}
+              name="fast-food-outline"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
@@ -60,9 +57,9 @@ export default () => {
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <FontAwesome5
-              name="dollar-sign"
-              size={24}
+            <AntDesign
+              name="bank"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
@@ -74,7 +71,7 @@ export default () => {
         CounterHistoryTab: {
           screen: CounterHistoryTab,
           navigationOptions: {
-            headerShown: true,
+            headerShown: false,
             headerTitle: "History Title",
             headerTitleAlign: "center",
             headerStyle: {
@@ -105,9 +102,9 @@ export default () => {
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <FontAwesome
-              name="history"
-              size={24}
+            <MaterialIcons
+              name="history-edu"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
@@ -123,8 +120,8 @@ export default () => {
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
             <Ionicons
-              name="notifications"
-              size={24}
+              name="notifications-circle-outline"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
@@ -132,16 +129,31 @@ export default () => {
       },
     },
     CounterTab: {
-      screen: CounterTab,
+      screen: createStackNavigator(
+        {
+          CounterTab: {
+            screen: CounterTab,
+            navigationOptions: {},
+          },
+          MenuListScreen: {
+            screen: MenuListScreen,
+            navigationOptions: {},
+          },
+        },
+        {
+          initialRouteName: "CounterTab",
+          headerMode: "none",
+        }
+      ),
       navigationOptions: {
         tabBarLabel: "Counter",
         tabBarIcon: ({ focused }) => (
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <MaterialIcons
-              name="countertops"
-              size={24}
+            <Ionicons
+              name="ios-menu"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>

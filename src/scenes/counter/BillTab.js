@@ -9,8 +9,8 @@ export default function CounterBillTab() {
 
   return (
     <SafeAreaView style={sty.container}>
-      <Text style={sty.title}>This is Bill Tab</Text>
-      <Text style={sty.title}>{user.userId}</Text>
+      <Text style={sty.titleText}>This is Bill Tab</Text>
+      <Text style={sty.titleText}>{user.userId}</Text>
     </SafeAreaView>
   );
 }

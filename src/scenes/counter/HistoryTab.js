@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, SafeAreaView, Text, TouchableHighlight } from "react-native";
+import { Button, SafeAreaView, Text, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 // import { useToast } from "react-native-styled-toast";
 
@@ -19,14 +19,14 @@ const CounterHistoryTab = ({ navigation }) => {
 
   return (
     <SafeAreaView style={sty.container}>
-      <Text style={sty.title}>Tab : Counter History</Text>
+      <Text style={sty.titleText}>Tab : Counter History</Text>
 
-      <TouchableHighlight onPress={() => navigation.navigate("Login")}>
-        <Text style={sty.subTitle}>Go to Login</Text>
-      </TouchableHighlight>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <Text style={sty.normalText}>Go to Login</Text>
+      </TouchableOpacity>
 
       {/* <Text style={sty.title}>{userObj.userId}</Text> */}
-      <Text style={sty.title}>{user.lastLogin}</Text>
+      <Text style={sty.normalText}>{user.lastLogin}</Text>
     </SafeAreaView>
   );
 };

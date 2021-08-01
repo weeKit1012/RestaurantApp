@@ -5,7 +5,7 @@ import sty from "_styles";
 const CounterOrderTab = ({ navigation }) => {
   return (
     <SafeAreaView style={sty.container}>
-      <Text style={sty.title}>Tab : Counter Order List</Text>
+      <Text style={sty.titleText}>Tab : Counter Order List</Text>
 
       <TouchableHighlight onPress={() => navigation.navigate("Login")}>
         <Text style={{ fontFamily: "inter-regular" }}>Go to Login</Text>
