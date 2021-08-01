@@ -81,6 +81,8 @@ All timestamp recorded in unix time
 
 2. Counter
 
+   - Counter Dashboard
+
 3. Customer
 
 4. Kitchen
