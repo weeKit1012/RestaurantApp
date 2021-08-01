@@ -113,7 +113,7 @@ const LoginScreen = ({ navigation }) => {
           <View style={{ flex: 0.1 }}></View>
 
           <View style={{ flex: 0.4 }}>
-            <Text style={sty.title}>Sign In</Text>
+            <Text style={sty.titleText}>Sign In</Text>
           </View>
         </View>
         <View style={localStyle.textArea}>

@@ -11,12 +11,19 @@ const Styles = StyleSheet.create({
   headerFont: {
     fontFamily: "fredoka-one-regular",
   },
-  title: {
+  titleText: {
     fontFamily: "inter-bold",
     fontSize: 30,
   },
-  subTitle: {
+  titleDivider: {
+    marginTop: 5,
+    height: 1,
+    backgroundColor: "black",
+    opacity: 0.2,
+  },
+  normalText: {
     fontFamily: "inter-regular",
+    fontSize: 16,
   },
 });
 
