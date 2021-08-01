@@ -41,7 +41,7 @@ const CounterTab = ({ navigation }) => {
         </Text>
         <View style={sty.titleDivider} />
       </View>
-      <View style={{ flex: 9, alignItems: "center" }}>
+      <View style={{ flex: 9, justifyContent: "center", alignItems: "center" }}>
         <TouchableOpacity
           style={localStyle.button}
           onPress={() => {

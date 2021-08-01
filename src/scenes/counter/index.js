@@ -10,6 +10,8 @@ import CounterNotificationTab from "_scenes/counter/NotificationTab";
 
 import CounterTab from "_scenes/counter/CounterTab";
 import MenuListScreen from "_scenes/counter/MenuList";
+import MenuAddScreen from "_scenes/counter/MenuAdd";
+import MenuModifyScreen from "_scenes/counter/MenuModify";
 
 import { CounterHistoryTabNavigation } from "./HistoryTab";
 
@@ -137,6 +139,14 @@ export default () => {
           },
           MenuListScreen: {
             screen: MenuListScreen,
+            navigationOptions: {},
+          },
+          MenuAddScreen: {
+            screen: MenuAddScreen,
+            navigationOptions: {},
+          },
+          MenuModifyScreen: {
+            screen: MenuModifyScreen,
             navigationOptions: {},
           },
         },
