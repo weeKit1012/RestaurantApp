@@ -33,6 +33,7 @@ const CounterBillTab = ({ navigation }) => {
       .firestore()
       .collection("orders")
       .where("orderStatus", "==", "2")
+      .orderBy("orderCreatedTime", "desc")
       .get()
       .then((querySnapshot) => {
         const orderArray = [];
@@ -69,7 +70,6 @@ const CounterBillTab = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("OrderDetailScreen", {
                     order: item,
-                    previousScreen: "CounterBillTab",
                   });
                 }}
               >

@@ -5,16 +5,14 @@ import {
   TouchableOpacity,
   StyleSheet,
   FlatList,
-  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import firebase from "../login/FirebaseConfig";
 import sty from "_styles";
-import firebase from "_scenes/login/FirebaseConfig";
 
-const OrderDetailScreen = ({ navigation }) => {
+const HistoryDetailScreen = ({ navigation }) => {
   const order = navigation.getParam("order");
-
   const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
@@ -41,81 +39,6 @@ const OrderDetailScreen = ({ navigation }) => {
     });
   }, []);
 
-  const updateOrderStatus = async () => {
-    let newStatus = "";
-    let currentTime = "";
-    if (order.orderStatus == "0") {
-      newStatus = "1";
-    } else {
-      newStatus = "3";
-      currentTime = Math.floor(new Date().getTime() / 1000.0);
-    }
-
-    await firebase
-      .firestore()
-      .collection("orders")
-      .doc(order.id)
-      .update({ orderStatus: newStatus, orderCompletedTime: currentTime })
-      .then(() => {
-        console.log("Update status");
-        navigation.goBack();
-      });
-  };
-
-  const rejectOrder = async () => {
-    let reason = "Out of stock";
-
-    await firebase
-      .firestore()
-      .collection("orders")
-      .doc(order.id)
-      .update({ orderStatus: "4", rejectReason: reason })
-      .then(() => {
-        console.log("Order rejected");
-        navigation.goBack();
-      });
-  };
-
-  const showUpdateAlert = () => {
-    Alert.alert(
-      "Alert",
-      "Confirm to accept the order?",
-      [
-        {
-          text: "Cancel",
-          onPress: () => {},
-        },
-        {
-          text: "Yes",
-          onPress: () => updateOrderStatus(),
-        },
-      ],
-      {
-        cancelable: true,
-      }
-    );
-  };
-
-  const showRejectAlert = () => {
-    Alert.alert(
-      "Alert",
-      "Confirm to reject the order?",
-      [
-        {
-          text: "Cancel",
-          onPress: () => {},
-        },
-        {
-          text: "Yes",
-          onPress: () => rejectOrder(),
-        },
-      ],
-      {
-        cancelable: true,
-      }
-    );
-  };
-
   return (
     <View style={sty.container}>
       {/* Header */}
@@ -130,14 +53,14 @@ const OrderDetailScreen = ({ navigation }) => {
             >
               <Ionicons name="arrow-back-outline" size={30} color="grey" />
             </TouchableOpacity>
-            <Text style={sty.titleText}>Order Detail</Text>
+            <Text style={sty.titleText}>History Detail</Text>
           </View>
         </View>
         <View style={sty.titleDivider} />
       </View>
       {/* Content */}
-      <View style={{ flex: 9 }}>
-        <Text style={localStyle.sectionHeader}>Order List</Text>
+      <View style={{ flex: 13, marginTop: 10 }}>
+        <Text style={localStyle.sectionHeader}>Food List</Text>
         <View style={{ flex: 2, backgroundColor: "transparent" }}>
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -163,7 +86,7 @@ const OrderDetailScreen = ({ navigation }) => {
                         },
                       ]}
                     >
-                      1
+                      1 * $ {item.foodPrice}
                     </Text>
                   </View>
                 </View>
@@ -171,9 +94,9 @@ const OrderDetailScreen = ({ navigation }) => {
             }}
           />
         </View>
-        <View style={{ marginBottom: 20 }}>
+        <View style={{ flex: 2, marginBottom: 20 }}>
           <Text style={localStyle.sectionHeader}>Summary</Text>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text
               style={[
                 sty.normalText,
@@ -196,36 +119,6 @@ const OrderDetailScreen = ({ navigation }) => {
             <Text style={[sty.normalText]}>{order.orderFoods.length}</Text>
           </View>
         </View>
-        <View
-          style={{
-            flex: 1.5,
-            alignItems: "center",
-            backgroundColor: "transparent",
-          }}
-        >
-          {order.orderStatus != "1" ? (
-            <TouchableOpacity
-              style={localStyle.button}
-              onPress={showUpdateAlert}
-            >
-              <Text style={localStyle.buttonText}>
-                {order.orderStatus == 0 ? "Accept" : "Done"}
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <View />
-          )}
-          {order.orderStatus == 2 ? (
-            <View />
-          ) : (
-            <TouchableOpacity
-              style={localStyle.button}
-              onPress={showRejectAlert}
-            >
-              <Text style={localStyle.buttonText}>Decline</Text>
-            </TouchableOpacity>
-          )}
-        </View>
       </View>
     </View>
   );
@@ -236,23 +129,6 @@ const localStyle = StyleSheet.create({
     fontFamily: "inter-bold",
     fontSize: 20,
   },
-  button: {
-    height: 60,
-    width: 250,
-    backgroundColor: "#f98640",
-    paddingHorizontal: 0,
-    paddingVertical: 0,
-    borderRadius: 40,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    fontFamily: "inter-bold",
-    color: "#fff",
-    justifyContent: "center",
-    fontSize: 20,
-  },
 });
 
-export default OrderDetailScreen;
+export default HistoryDetailScreen;

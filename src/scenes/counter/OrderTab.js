@@ -86,7 +86,6 @@ const CounterOrderTab = ({ navigation }) => {
                   onPress={() => {
                     navigation.navigate("OrderDetailScreen", {
                       order: item,
-                      previousScreen: "CounterOrderTab",
                     });
                   }}
                 >

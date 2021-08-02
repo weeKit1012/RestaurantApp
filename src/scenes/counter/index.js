@@ -3,7 +3,6 @@ import { View } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { Ionicons, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
-import CounterHistoryTab from "_scenes/counter/HistoryTab";
 import CounterBillTab from "_scenes/counter/BillTab";
 import CounterNotificationTab from "_scenes/counter/NotificationTab";
 
@@ -15,7 +14,10 @@ import MenuModifyScreen from "_scenes/counter/MenuModify";
 import CounterOrderTab from "_scenes/counter/OrderTab";
 import OrderDetailScreen from "_scenes/counter/OrderDetail";
 
-import { CounterHistoryTabNavigation } from "./HistoryTab";
+import CounterHistoryTab from "_scenes/counter/HistoryTab";
+import HistoryDetailScreen from "_scenes/counter/HistoryDetail";
+
+// import { CounterHistoryTabNavigation } from "./HistoryTab";
 
 export default () => {
   const CounterTabNavigatorConfig = {
@@ -86,34 +88,44 @@ export default () => {
       },
     },
     CounterHistoryTab: {
-      screen: createStackNavigator({
-        CounterHistoryTab: {
-          screen: CounterHistoryTab,
-          navigationOptions: {
-            headerShown: false,
-            headerTitle: "History Title",
-            headerTitleAlign: "center",
-            headerStyle: {
-              backgroundColor: "#d8ffb0",
-              height: 90,
+      screen: createStackNavigator(
+        {
+          CounterHistoryTab: {
+            screen: CounterHistoryTab,
+            navigationOptions: {
+              headerShown: false,
+              // headerTitle: "History Title",
+              // headerTitleAlign: "center",
+              // headerStyle: {
+              //   backgroundColor: "#d8ffb0",
+              //   height: 90,
+              // },
+              // headerTitleStyle: {
+              //   fontFamily: "inter-bold",
+              // },
+              // headerRight: () => (
+              //   <MaterialIcons.Button
+              //     name="logout"
+              //     size={24}
+              //     color="black"
+              //     backgroundColor="#d8ffb0"
+              //     onPress={() => {
+              //       CounterHistoryTabNavigation.navigate("Login");
+              //     }}
+              //   />
+              // ),
             },
-            headerTitleStyle: {
-              fontFamily: "inter-bold",
-            },
-            headerRight: () => (
-              <MaterialIcons.Button
-                name="logout"
-                size={24}
-                color="black"
-                backgroundColor="#d8ffb0"
-                onPress={() => {
-                  CounterHistoryTabNavigation.navigate("Login");
-                }}
-              />
-            ),
+          },
+          HistoryDetailScreen: {
+            screen: HistoryDetailScreen,
+            navigationOptions: {},
           },
         },
-      }),
+        {
+          headerMode: "none",
+          initialRouteName: "CounterHistoryTab",
+        }
+      ),
       navigationOptions: {
         title: "History Title",
         tabBarLabel: "History",
