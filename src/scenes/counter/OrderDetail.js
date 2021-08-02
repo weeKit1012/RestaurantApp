@@ -14,6 +14,7 @@ import firebase from "_scenes/login/FirebaseConfig";
 
 const OrderDetailScreen = ({ navigation }) => {
   const order = navigation.getParam("order");
+  const previousScreen = navigation.getParam("previousScreen");
 
   const [foodList, setFoodList] = useState([]);
 
@@ -215,10 +216,16 @@ const OrderDetailScreen = ({ navigation }) => {
           ) : (
             <View />
           )}
-
-          <TouchableOpacity style={localStyle.button} onPress={showRejectAlert}>
-            <Text style={localStyle.buttonText}>Decline</Text>
-          </TouchableOpacity>
+          {order.orderStatus == 2 ? (
+            <View />
+          ) : (
+            <TouchableOpacity
+              style={localStyle.button}
+              onPress={showRejectAlert}
+            >
+              <Text style={localStyle.buttonText}>Decline</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>

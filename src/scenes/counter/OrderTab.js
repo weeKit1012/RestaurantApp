@@ -84,7 +84,10 @@ const CounterOrderTab = ({ navigation }) => {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("OrderDetailScreen", { order: item });
+                    navigation.navigate("OrderDetailScreen", {
+                      order: item,
+                      previousScreen: "CounterOrderTab",
+                    });
                   }}
                 >
                   <OrderitemCard order={item} />
