@@ -79,7 +79,7 @@ const OrderDetailScreen = ({ navigation }) => {
   const showUpdateAlert = () => {
     Alert.alert(
       "Alert",
-      "Confirm to accept the order?",
+      "Confirm to proceed the order?",
       [
         {
           text: "Cancel",
