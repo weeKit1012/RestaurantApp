@@ -23,7 +23,7 @@ React Native project for MPMA module
 
    - Receive food order from customer
    - Review the food order? Send the order to kitchen : Reject the order and send a notification with reason back to customer
-   - Receive notification from kitchen to send waiter to the kitchen
+   - ~~Receive notification from kitchen to send waiter to the kitchen~~
    - Check order summary for every table (Can cancel the order as well)
    - Update bill status for every table
    - Check bill history
@@ -82,6 +82,9 @@ All timestamp recorded in unix time
 2. Counter
 
    - Counter Dashboard
+   - Order Tab
+   - Bill Tab
+   - History Tab
 
 3. Customer
 
