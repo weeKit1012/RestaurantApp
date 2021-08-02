@@ -14,7 +14,7 @@ import {
 
 import sty from "_styles";
 import firebase from "./FirebaseConfig";
-import { ModalPicker } from "../../components/ModalPicker";
+import { ModalPicker } from "../../components/login/ModalPicker";
 
 const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -55,7 +55,7 @@ const SignUpScreen = ({ navigation }) => {
     <SafeAreaView style={sty.container}>
       <View style={localStyle.screenLayout}>
         <View style={localStyle.titleArea}>
-          <Text style={[sty.title, localStyle.titleLabel]}>Sign Up</Text>
+          <Text style={[sty.titleText, localStyle.titleLabel]}>Sign Up</Text>
         </View>
         <View style={localStyle.textArea}>
           <Text style={localStyle.textLabel}>Login Email</Text>

@@ -1,20 +1,23 @@
 import React from "react";
 import { View } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
-import {
-  FontAwesome,
-  FontAwesome5,
-  Ionicons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
-import CounterHistoryTab from "_scenes/counter/HistoryTab";
-import CounterOrderTab from "_scenes/counter/OrderTab";
 import CounterBillTab from "_scenes/counter/BillTab";
 import CounterNotificationTab from "_scenes/counter/NotificationTab";
-import CounterTab from "_scenes/counter/CounterTab";
 
-import { CounterHistoryTabNavigation } from "./HistoryTab";
+import CounterTab from "_scenes/counter/CounterTab";
+import MenuListScreen from "_scenes/counter/MenuList";
+import MenuAddScreen from "_scenes/counter/MenuAdd";
+import MenuModifyScreen from "_scenes/counter/MenuModify";
+
+import CounterOrderTab from "_scenes/counter/OrderTab";
+import OrderDetailScreen from "_scenes/counter/OrderDetail";
+
+import CounterHistoryTab from "_scenes/counter/HistoryTab";
+import HistoryDetailScreen from "_scenes/counter/HistoryDetail";
+
+// import { CounterHistoryTabNavigation } from "./HistoryTab";
 
 export default () => {
   const CounterTabNavigatorConfig = {
@@ -36,16 +39,31 @@ export default () => {
 
   const CounterRouteConfigs = {
     CounterOrderTab: {
-      screen: CounterOrderTab,
+      screen: createStackNavigator(
+        {
+          CounterOrderTab: {
+            screen: CounterOrderTab,
+          },
+          OrderDetailScreen: {
+            screen: OrderDetailScreen,
+            navigationOptions: {},
+          },
+        },
+        { headerMode: "none", initialRouteName: "CounterOrderTab" }
+      ),
       navigationOptions: {
         tabBarLabel: "Order",
         tabBarIcon: ({ focused }) => (
           <View
-            style={{ alignItems: "center", justifyContent: "center", top: 3 }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              top: 3,
+            }}
           >
             <Ionicons
-              name="fast-food"
-              size={24}
+              name="fast-food-outline"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
@@ -60,9 +78,9 @@ export default () => {
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <FontAwesome5
-              name="dollar-sign"
-              size={24}
+            <AntDesign
+              name="bank"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
@@ -70,34 +88,44 @@ export default () => {
       },
     },
     CounterHistoryTab: {
-      screen: createStackNavigator({
-        CounterHistoryTab: {
-          screen: CounterHistoryTab,
-          navigationOptions: {
-            headerShown: true,
-            headerTitle: "History Title",
-            headerTitleAlign: "center",
-            headerStyle: {
-              backgroundColor: "#d8ffb0",
-              height: 90,
+      screen: createStackNavigator(
+        {
+          CounterHistoryTab: {
+            screen: CounterHistoryTab,
+            navigationOptions: {
+              headerShown: false,
+              // headerTitle: "History Title",
+              // headerTitleAlign: "center",
+              // headerStyle: {
+              //   backgroundColor: "#d8ffb0",
+              //   height: 90,
+              // },
+              // headerTitleStyle: {
+              //   fontFamily: "inter-bold",
+              // },
+              // headerRight: () => (
+              //   <MaterialIcons.Button
+              //     name="logout"
+              //     size={24}
+              //     color="black"
+              //     backgroundColor="#d8ffb0"
+              //     onPress={() => {
+              //       CounterHistoryTabNavigation.navigate("Login");
+              //     }}
+              //   />
+              // ),
             },
-            headerTitleStyle: {
-              fontFamily: "inter-bold",
-            },
-            headerRight: () => (
-              <MaterialIcons.Button
-                name="logout"
-                size={24}
-                color="black"
-                backgroundColor="#d8ffb0"
-                onPress={() => {
-                  CounterHistoryTabNavigation.navigate("Login");
-                }}
-              />
-            ),
+          },
+          HistoryDetailScreen: {
+            screen: HistoryDetailScreen,
+            navigationOptions: {},
           },
         },
-      }),
+        {
+          headerMode: "none",
+          initialRouteName: "CounterHistoryTab",
+        }
+      ),
       navigationOptions: {
         title: "History Title",
         tabBarLabel: "History",
@@ -105,43 +133,66 @@ export default () => {
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <FontAwesome
-              name="history"
-              size={24}
+            <MaterialIcons
+              name="history-edu"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
         ),
       },
     },
-    CounterNotificationTab: {
-      screen: CounterNotificationTab,
-      navigationOptions: {
-        tabBarLabel: "Notification",
-        tabBarIcon: ({ focused }) => (
-          <View
-            style={{ alignItems: "center", justifyContent: "center", top: 3 }}
-          >
-            <Ionicons
-              name="notifications"
-              size={24}
-              color={focused ? "#fb863c" : "#748c94"}
-            />
-          </View>
-        ),
-      },
-    },
+    // CounterNotificationTab: {
+    //   screen: CounterNotificationTab,
+    //   navigationOptions: {
+    //     tabBarLabel: "Notification",
+    //     tabBarIcon: ({ focused }) => (
+    //       <View
+    //         style={{ alignItems: "center", justifyContent: "center", top: 3 }}
+    //       >
+    //         <Ionicons
+    //           name="notifications-circle-outline"
+    //           size={30}
+    //           color={focused ? "#fb863c" : "#748c94"}
+    //         />
+    //       </View>
+    //     ),
+    //   },
+    // },
     CounterTab: {
-      screen: CounterTab,
+      screen: createStackNavigator(
+        {
+          CounterTab: {
+            screen: CounterTab,
+            navigationOptions: {},
+          },
+          MenuListScreen: {
+            screen: MenuListScreen,
+            navigationOptions: {},
+          },
+          MenuAddScreen: {
+            screen: MenuAddScreen,
+            navigationOptions: {},
+          },
+          MenuModifyScreen: {
+            screen: MenuModifyScreen,
+            navigationOptions: {},
+          },
+        },
+        {
+          initialRouteName: "CounterTab",
+          headerMode: "none",
+        }
+      ),
       navigationOptions: {
         tabBarLabel: "Counter",
         tabBarIcon: ({ focused }) => (
           <View
             style={{ alignItems: "center", justifyContent: "center", top: 3 }}
           >
-            <MaterialIcons
-              name="countertops"
-              size={24}
+            <Ionicons
+              name="ios-menu"
+              size={30}
               color={focused ? "#fb863c" : "#748c94"}
             />
           </View>
