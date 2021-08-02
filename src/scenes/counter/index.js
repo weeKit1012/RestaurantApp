@@ -4,7 +4,6 @@ import { createStackNavigator } from "react-navigation-stack";
 import { Ionicons, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
 import CounterHistoryTab from "_scenes/counter/HistoryTab";
-import CounterOrderTab from "_scenes/counter/OrderTab";
 import CounterBillTab from "_scenes/counter/BillTab";
 import CounterNotificationTab from "_scenes/counter/NotificationTab";
 
@@ -12,6 +11,9 @@ import CounterTab from "_scenes/counter/CounterTab";
 import MenuListScreen from "_scenes/counter/MenuList";
 import MenuAddScreen from "_scenes/counter/MenuAdd";
 import MenuModifyScreen from "_scenes/counter/MenuModify";
+
+import CounterOrderTab from "_scenes/counter/OrderTab";
+import OrderDetailScreen from "_scenes/counter/OrderDetail";
 
 import { CounterHistoryTabNavigation } from "./HistoryTab";
 
@@ -35,12 +37,27 @@ export default () => {
 
   const CounterRouteConfigs = {
     CounterOrderTab: {
-      screen: CounterOrderTab,
+      screen: createStackNavigator(
+        {
+          CounterOrderTab: {
+            screen: CounterOrderTab,
+          },
+          OrderDetailScreen: {
+            screen: OrderDetailScreen,
+            navigationOptions: {},
+          },
+        },
+        { headerMode: "none", initialRouteName: "CounterOrderTab" }
+      ),
       navigationOptions: {
         tabBarLabel: "Order",
         tabBarIcon: ({ focused }) => (
           <View
-            style={{ alignItems: "center", justifyContent: "center", top: 3 }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              top: 3,
+            }}
           >
             <Ionicons
               name="fast-food-outline"

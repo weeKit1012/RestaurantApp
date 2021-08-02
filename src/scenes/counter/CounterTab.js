@@ -5,6 +5,7 @@ import { useToast } from "react-native-styled-toast";
 
 import global from "_scenes/login/Global";
 import sty from "_styles";
+import firebase from "../login/FirebaseConfig";
 
 const CounterTab = ({ navigation }) => {
   const { toast } = useToast();
@@ -26,6 +27,29 @@ const CounterTab = ({ navigation }) => {
         cancelable: true,
       }
     );
+  };
+
+  const generateSample = async () => {
+    let currentTime = Math.floor(new Date().getTime() / 1000.0);
+
+    await firebase
+      .firestore()
+      .collection("orders")
+      .add({
+        orderCompletedTime: "",
+        orderCreatedTime: currentTime,
+        orderFoods: [
+          "b4Mh1sbRlCsSaQfIsTBO",
+          "cUhDgn3PnXq1ZiLadE0G",
+          "1AWPRrnqDTnwGSyiD1W9",
+        ],
+        orderStatus: "0",
+        orderTotal: "78",
+        userId: "onrZeVLv0CYSfrwl41zA2OUPwt33",
+      })
+      .then(() => {
+        console.log("Added");
+      });
   };
 
   return (
@@ -52,6 +76,9 @@ const CounterTab = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity style={localStyle.button} onPress={showLogOutAlert}>
           <Text style={localStyle.buttonText}>Sign Out</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={localStyle.button} onPress={generateSample}>
+          <Text style={localStyle.buttonText}>generateSample</Text>
         </TouchableOpacity>
       </View>
     </View>
