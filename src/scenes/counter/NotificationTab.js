@@ -1,10 +1,55 @@
-import React, { Component } from "react";
-import { View, Text, TextInput, Image, StyleSheet } from "react-native";
+import React, { useEffect, useState, useMemo } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useToast } from "react-native-styled-toast";
 
 import sty from "_styles";
+import firebase from "../login/FirebaseConfig";
 
 const CounterNotificationTab = () => {
+  const [listLength, setListLength] = useState("");
+
+  const { toast } = useToast();
+
+  useEffect(() => {
+    try {
+      var handle = setInterval(getOrderList, 5000);
+
+      return () => {
+        clearInterval(handle);
+      };
+    } catch (error) {}
+  }, []);
+
+  // useMemo(() => {
+  //   toast({ message: "Go Kitchen" });
+  // }, [listLength]);
+
+  const getOrderList = async () => {
+    await firebase
+      .firestore()
+      .collection("orders")
+      .where("orderStatus", "==", "2")
+      .get()
+      .then((querySnapshot) => {
+        const orderArray = [];
+        querySnapshot.forEach((documentSnapshot) => {
+          var obj = documentSnapshot.data();
+          obj.id = documentSnapshot.id;
+          orderArray.push(obj);
+        });
+
+        setListLength(orderArray.length);
+      });
+  };
+
   return (
     <View style={sty.container}>
       <View style={{ flex: 1, marginTop: 10, backgroundColor: "transparent" }}>
@@ -18,16 +63,8 @@ const CounterNotificationTab = () => {
         </Text>
         <View style={sty.titleDivider} />
       </View>
-      <View style={{ flex: 9 }}>
-        <TextInput
-          style={{ borderWidth: 1, height: 40, width: 120, margin: 12 }}
-        />
-        <Image
-          style={localStyle.image}
-          source={{
-            uri: "https://firebasestorage.googleapis.com/v0/b/reactnative-restaurantapp.appspot.com/o/Mashed%20Potatoes.jpg?alt=media&token=6c4e7b37-5c02-4f48-8cde-24243ef016eb",
-          }}
-        />
+      <View style={{ flex: 13, marginTop: 10 }}>
+        <FlatList />
       </View>
     </View>
   );

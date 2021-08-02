@@ -142,23 +142,23 @@ export default () => {
         ),
       },
     },
-    CounterNotificationTab: {
-      screen: CounterNotificationTab,
-      navigationOptions: {
-        tabBarLabel: "Notification",
-        tabBarIcon: ({ focused }) => (
-          <View
-            style={{ alignItems: "center", justifyContent: "center", top: 3 }}
-          >
-            <Ionicons
-              name="notifications-circle-outline"
-              size={30}
-              color={focused ? "#fb863c" : "#748c94"}
-            />
-          </View>
-        ),
-      },
-    },
+    // CounterNotificationTab: {
+    //   screen: CounterNotificationTab,
+    //   navigationOptions: {
+    //     tabBarLabel: "Notification",
+    //     tabBarIcon: ({ focused }) => (
+    //       <View
+    //         style={{ alignItems: "center", justifyContent: "center", top: 3 }}
+    //       >
+    //         <Ionicons
+    //           name="notifications-circle-outline"
+    //           size={30}
+    //           color={focused ? "#fb863c" : "#748c94"}
+    //         />
+    //       </View>
+    //     ),
+    //   },
+    // },
     CounterTab: {
       screen: createStackNavigator(
         {
