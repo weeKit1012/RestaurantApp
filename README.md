@@ -45,6 +45,7 @@ React Native project for MPMA module
    - userRole
    - userStatus (1 by default, 0 = banned; 1 = available)
    - lastLogin
+   - table (if userRole is customer)
 
 2. foods
 
