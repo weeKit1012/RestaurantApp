@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   TextInput,
   Image,
+  Alert,
   StyleSheet,
 } from "react-native";
 import { Root } from "react-native-popup-confirm-toast";
@@ -49,6 +50,14 @@ const LoginScreen = ({ navigation }) => {
       .catch((err) => {
         var errorCode = err.code;
         console.log(errorCode + ": " + err.message);
+        Alert.alert(
+          "Error",
+          "Failed to sign in. Please try again.",
+          [{ text: "Yes", onPress: () => {} }],
+          {
+            cancelable: true,
+          }
+        );
       });
   };
 
@@ -140,7 +149,7 @@ const LoginScreen = ({ navigation }) => {
             <Text style={localStyle.buttonText}>Sign In</Text>
           </TouchableHighlight>
 
-          <View style={{ flex: 0.2 }}>
+          {/* <View style={{ flex: 0.2 }}>
             <View style={{ flex: 4 }}></View>
             <View
               style={{ flex: 3, flexDirection: "row", alignItems: "center" }}
@@ -164,7 +173,7 @@ const LoginScreen = ({ navigation }) => {
             }}
           >
             <Text style={localStyle.buttonText}>Go to Register</Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
         </View>
       </SafeAreaView>
     </Root>
