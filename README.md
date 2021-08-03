@@ -52,7 +52,7 @@ React Native project for MPMA module
    - foodName
    - foodPrice
    - foodImageUrl
-   - foodStatus (0 = inavailable; 1 = available)
+   - foodStatus (0 = unavailable; 1 = available)
    - foodPopularity
 
 3. orders
