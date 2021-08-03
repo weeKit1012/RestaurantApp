@@ -11,7 +11,7 @@ const KitchenHomeScreen = ({ navigation }) => {
     <SafeAreaView style={sty.container}>
       <Text>This is Kitchen Home</Text>
       <Text>{userObj.userId}</Text>
-      <Text>{user.userId}</Text>
+      <Text>{user.userId} test6</Text>
       <Button
         title="Back to login"
         onPress={() => {
