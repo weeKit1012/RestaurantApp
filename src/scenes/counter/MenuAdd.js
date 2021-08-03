@@ -70,6 +70,7 @@ const MenuAddScreen = ({ navigation }) => {
         foodName: name,
         foodPrice: price,
         foodStatus: "1",
+        foodPopularity: "",
       })
       .then(() => {
         console.log("food added");
