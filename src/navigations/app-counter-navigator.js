@@ -2,7 +2,8 @@
 
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import CounterIndex from "_scenes/counter";
+// import CounterIndex from "_scenes/counter";
+import CounterIndex from "../scenes/counter";
 
 const [CounterTabNavigatorConfig, CounterRouteConfigs] = CounterIndex();
 

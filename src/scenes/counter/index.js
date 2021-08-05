@@ -3,20 +3,33 @@ import { View } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { Ionicons, MaterialIcons, AntDesign } from "@expo/vector-icons";
 
-import CounterBillTab from "_scenes/counter/BillTab";
-import CounterNotificationTab from "_scenes/counter/NotificationTab";
+// import CounterBillTab from "_scenes/counter/BillTab";
+// import CounterNotificationTab from "_scenes/counter/NotificationTab";
 
-import CounterTab from "_scenes/counter/CounterTab";
-import MenuListScreen from "_scenes/counter/MenuList";
-import MenuAddScreen from "_scenes/counter/MenuAdd";
-import MenuModifyScreen from "_scenes/counter/MenuModify";
+// import CounterTab from "_scenes/counter/CounterTab";
+// import MenuListScreen from "_scenes/counter/MenuList";
+// import MenuAddScreen from "_scenes/counter/MenuAdd";
+// import MenuModifyScreen from "_scenes/counter/MenuModify";
 
-import CounterOrderTab from "_scenes/counter/OrderTab";
-import OrderDetailScreen from "_scenes/counter/OrderDetail";
+// import CounterOrderTab from "_scenes/counter/OrderTab";
+// import OrderDetailScreen from "_scenes/counter/OrderDetail";
 
-import CounterHistoryTab from "_scenes/counter/HistoryTab";
-import HistoryDetailScreen from "_scenes/counter/HistoryDetail";
+// import CounterHistoryTab from "_scenes/counter/HistoryTab";
+// import HistoryDetailScreen from "_scenes/counter/HistoryDetail";
 
+import CounterBillTab from "./BillTab";
+import CounterNotificationTab from "./NotificationTab";
+
+import CounterTab from "./CounterTab";
+import MenuListScreen from "./MenuList";
+import MenuAddScreen from "./MenuAdd";
+import MenuModifyScreen from "./MenuModify";
+
+import CounterOrderTab from "./OrderTab";
+import OrderDetailScreen from "./OrderDetail";
+
+import CounterHistoryTab from "./HistoryTab";
+import HistoryDetailScreen from "./HistoryDetail";
 // import { CounterHistoryTabNavigation } from "./HistoryTab";
 
 export default () => {

@@ -3,8 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useToast } from "react-native-styled-toast";
 
-import global from "_scenes/login/Global";
-import sty from "_styles";
+// import global from "_scenes/login/Global";
+// import sty from "_styles";
+import global from "../login/Global";
+import sty from "../../styles";
 import firebase from "../login/FirebaseConfig";
 
 const CounterTab = ({ navigation }) => {

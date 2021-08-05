@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 
 import { createStackNavigator } from "react-navigation-stack";
-import LoginScreen from "_scenes/login";
+// import LoginScreen from "_scenes/login";
+import LoginScreen from "../scenes/login";
 import SignUpScreen from "../scenes/login/SignUp";
 
 const AuthNavigatorConfig = {

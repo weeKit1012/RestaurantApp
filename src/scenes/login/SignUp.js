@@ -12,7 +12,8 @@ import {
   StyleSheet,
 } from "react-native";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 import firebase from "./FirebaseConfig";
 import { ModalPicker } from "../../components/login/ModalPicker";
 

@@ -12,7 +12,8 @@ import * as ImagePicker from "expo-image-picker";
 import { useToast } from "react-native-styled-toast";
 import { RadioButton } from "react-native-paper";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 import firebase from "../login/FirebaseConfig";
 import { fontSize } from "styled-system";
 
