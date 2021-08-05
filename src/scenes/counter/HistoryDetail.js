@@ -9,7 +9,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import firebase from "../login/FirebaseConfig";
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 
 const HistoryDetailScreen = ({ navigation }) => {
   const order = navigation.getParam("order");

@@ -7,8 +7,10 @@ import * as Font from "expo-font";
 import { ThemeProvider } from "styled-components";
 import { ToastProvider } from "react-native-styled-toast";
 
-import Navigator from "_navigations";
-import theme from "_styles/theme";
+// import Navigator from "_navigations";
+// import theme from "_styles/theme";
+import Navigator from "./navigations";
+import theme from "./styles/theme";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -19,13 +21,13 @@ const fetchFonts = () => {
 };
 
 const App = () => {
-  LogBox.ignoreLogs(["Setting a timer"]);
-  const _console = _.clone(console);
-  console.warn = (message) => {
-    if (message.indexOf("Setting a timer") <= -1) {
-      _console.warn(message);
-    }
-  };
+  // LogBox.ignoreLogs(["Setting a timer"]);
+  // const _console = _.clone(console);
+  // console.warn = (message) => {
+  //   if (message.indexOf("Setting a timer") <= -1) {
+  //     _console.warn(message);
+  //   }
+  // };
 
   const [fontLoaded, setFontLoaded] = useState(false);
 

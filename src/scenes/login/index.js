@@ -12,10 +12,12 @@ import {
 } from "react-native";
 import { Root } from "react-native-popup-confirm-toast";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 import firebase from "./FirebaseConfig";
 import global from "./Global";
-import { bottomToast } from "_utils/ToastMessage";
+// import { bottomToast } from "_utils/ToastMessage";
+import { bottomToast } from "../../utils/ToastMessage";
 import { unixToLocale } from "../../utils/TimeConverter";
 
 const LoginScreen = ({ navigation }) => {
@@ -68,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
           setRoute("CounterTab");
         }
         if (userObj.userRole == "Kitchen") {
-          setRoute("KitchenHomeScreen");
+          setRoute("KitchenCurrentOrderTab");
         }
         if (userObj.userRole == "Customer") {
           setRoute("CustomerHomeScreen");

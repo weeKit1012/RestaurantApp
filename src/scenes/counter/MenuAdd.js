@@ -12,7 +12,8 @@ import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { useToast } from "react-native-styled-toast";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 import firebase from "../login/FirebaseConfig";
 
 const MenuAddScreen = ({ navigation }) => {

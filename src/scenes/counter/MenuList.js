@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 import firebase from "../login/FirebaseConfig";
 import MenuItemCard from "../../components/counter/MenuItemCard";
 import SearchBar from "../../components/counter/SearchBar";

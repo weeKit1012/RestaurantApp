@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import firebase from "_scenes/login/FirebaseConfig";
-import sty from "_styles";
+// import firebase from "_scenes/login/FirebaseConfig";
+// import sty from "_styles";
+import firebase from "../../scenes/login/FirebaseConfig";
+import sty from "../../styles";
 
 const OrderitemCard = ({ order }) => {
   const [table, setTable] = useState("");

@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import sty from "_styles";
-import global from "_scenes/login/Global";
+// import sty from "_styles";
+// import global from "_scenes/login/Global";
+import sty from "../../styles";
+import global from "../login/Global";
 import firebase from "../login/FirebaseConfig";
 import HistoryItemCard from "../../components/counter/HistoryItemCard";
 

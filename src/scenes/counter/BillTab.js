@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 import global from "../login/Global";
 import firebase from "../login/FirebaseConfig";
 import OrderitemCard from "../../components/counter/OrderItemCard";

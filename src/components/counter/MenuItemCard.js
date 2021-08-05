@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 
-import sty from "_styles";
+// import sty from "_styles";
+import sty from "../../styles";
 
 const MenuItemCard = ({ result }) => {
   return (

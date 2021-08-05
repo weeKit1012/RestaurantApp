@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import sty from "_styles";
-import firebase from "_scenes/login/FirebaseConfig";
+// import sty from "_styles";
+// import firebase from "_scenes/login/FirebaseConfig";
+import sty from "../../styles";
+import firebase from "../login/FirebaseConfig";
 
 const OrderDetailScreen = ({ navigation }) => {
   const order = navigation.getParam("order");
