@@ -25,9 +25,23 @@ const Styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 5,
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 
+  titleText: {
+    fontFamily: "inter-bold",
+    fontSize: 30,
+  },
+  titleDivider: {
+    marginTop: 5,
+    height: 1,
+    backgroundColor: "black",
+    opacity: 0.2,
+  },
+  normalText: {
+    fontFamily: "inter-regular",
+    fontSize: 16,
+  },
 });
 
 export default Styles;

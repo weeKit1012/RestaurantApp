@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, SectionList, View, TouchableOpacity, FlatList } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  SectionList,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import sty from "../../styles";
 import { useToast } from "react-native-styled-toast";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card, ListItem, Button, Icon } from "react-native-elements";
 import firebase from "../login/FirebaseConfig";
 
-
-import OrderItem from "../../components/kitchen/CurrentOrderComponent"; //file 
-
-
-
+import OrderItem from "../../components/kitchen/CurrentOrderComponent"; //file
 
 const KitchenCurrentOrderTab = ({ navigation }) => {
   const { toast } = useToast();
@@ -21,7 +24,7 @@ const KitchenCurrentOrderTab = ({ navigation }) => {
 
   useEffect(() => {
     try {
-      var handle = setInterval(getOrderList, 2000);
+      var handle = setInterval(getOrderList, 5000);
 
       return () => {
         clearInterval(handle);
@@ -47,36 +50,43 @@ const KitchenCurrentOrderTab = ({ navigation }) => {
       });
   };
 
-return(
-  <View style={sty.container}>
-    <Text style={{ marginLeft:15, fontSize:24, fontWeight:'bold', marginBottom:15}}>Click the order to proceed it</Text>
-    <View style={{flex:0.9}}>
-     <FlatList
-            showsVerticalScrollIndicator={false}
-            data={orderList}
-            keyExtractor={(order) => order.id}
-            renderItem={({ item }) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("CurrentOrderDetailTab", {
-                      order: item,
-                      orderId: item.orderCreatedTime,
-                      userId: item.userId
-                    });
-                  }}
-                >
-                  <OrderItem order={item} />
-                </TouchableOpacity>
-              );
-            }}
-          /></View>
-  </View>
-);
-
-  
+  return (
+    <View style={sty.container}>
+      <Text
+        style={{
+          marginLeft: 15,
+          fontSize: 24,
+          fontWeight: "bold",
+          marginBottom: 15,
+        }}
+      >
+        Click the order to proceed it
+      </Text>
+      <View style={{ flex: 0.9 }}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={orderList}
+          keyExtractor={(order) => order.id}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("CurrentOrderDetailTab", {
+                    order: item,
+                    orderId: item.orderCreatedTime,
+                    userId: item.userId,
+                  });
+                }}
+              >
+                <OrderItem order={item} />
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
+    </View>
+  );
 };
-
 
 export let KitchenCurrentOrderTabNavigation = {};
 export default KitchenCurrentOrderTab;
