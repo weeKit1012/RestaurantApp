@@ -76,7 +76,6 @@ return(
           /></View>
   </View>
 );
-  
 };
 
 export let KitchenCurrentOrderTabNavigation = {};

@@ -32,7 +32,7 @@ const OrderDetailScreen = ({ navigation }) => {
           .then((documentSnapshot) => {
             // setFoodList([...foodList, documentSnapshot.data()]);
             let obj = documentSnapshot.data();
-            obj.id = id;
+            obj.id = `${Math.floor(Math.random() * 10000)}`;
             tempArray.push(obj);
             // console.log(tempArray);
             setFoodList(tempArray);

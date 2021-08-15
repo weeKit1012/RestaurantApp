@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { padding } from "styled-system";
 import firebase from "../../scenes/login/FirebaseConfig";
 import { unixToLocale } from "../../utils/TimeConverter";
@@ -19,16 +19,16 @@ const styles = StyleSheet.create({
     margin:5,
   },
 
-  kitchenCardContainer:{
-    borderColor:'black', 
-    borderWidth:1,
-    overflow: 'hidden',
-    shadowColor: '#000',
+  kitchenCardContainer: {
+    borderColor: "black",
+    borderWidth: 1,
+    overflow: "hidden",
+    shadowColor: "#000",
     shadowRadius: 10,
     shadowOpacity: 1,
-    flex:1,
-    margin:10,
-    borderRadius:15,
+    flex: 1,
+    margin: 10,
+    borderRadius: 15,
   },
 });
 
@@ -60,8 +60,19 @@ const PastOrderitem = ({ order }) => {
             <Text style={styles.CustomerID}>CustomerID: {order.userId}</Text>
             <Text style={styles.foodComment}>Complete at: {unixToLocale(order.orderCompletedTime)} for table no: {table}</Text>            
 
-        </View></View>
-    );
+  const getData = async () => {
+    await firebase
+      .firestore()
+      .collection("users")
+      .doc(order.userId)
+      .get()
+      .then((documentSnapshot) => {
+        let obj = documentSnapshot.data();
+
+        setCompletionDate(obj.table);
+        setCustomer(order.userId);
+        setOrderID(order.orderCreatedTime);
+      });
   };
 
   const PastOrderitemDecline = ({ order }) => {
@@ -104,3 +115,4 @@ const PastOrderitem = ({ order }) => {
 export {PastOrderitem, PastOrderitemDecline};
 
 
+export default PastOrderitem;

@@ -54,6 +54,30 @@ const CounterTab = ({ navigation }) => {
       });
   };
 
+  const generateSample2 = async () => {
+    let currentTime = Math.floor(new Date().getTime() / 1000.0);
+
+    await firebase
+      .firestore()
+      .collection("orders")
+      .add({
+        orderCompletedTime: "",
+        orderCreatedTime: currentTime,
+        orderFoods: [
+          "cNHnO8BiLiNkaTYXxGsL",
+          "LBhficobmrlYRTjz8NpQ",
+          "NjSKClpWJ0TFppTx2w8A",
+          "NjSKClpWJ0TFppTx2w8A",
+        ],
+        orderStatus: "0",
+        orderTotal: "42",
+        userId: "maDiTzl2DQcTHhXi7s4RbVMbiGn2",
+      })
+      .then(() => {
+        console.log("Added");
+      });
+  };
+
   return (
     <View
       style={[
@@ -81,6 +105,9 @@ const CounterTab = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity style={localStyle.button} onPress={generateSample}>
           <Text style={localStyle.buttonText}>generateSample</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={localStyle.button} onPress={generateSample2}>
+          <Text style={localStyle.buttonText}>generateSample2</Text>
         </TouchableOpacity>
       </View>
     </View>

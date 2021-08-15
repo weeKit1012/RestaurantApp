@@ -1,7 +1,7 @@
 //WARNING: DONT SIMPLY MODIFY THIS FILE
 
-// import * as firebase from "firebase";
-import firebase from "firebase";
+import * as firebase from "firebase";
+// import firebase from "firebase";
 import "firebase/firestore";
 import "firebase/storage";
 
@@ -14,12 +14,12 @@ const firebaseConfig = {
   appId: "1:223149599788:web:9c51bdad742e0b04963589",
 };
 
-// if (!firebase.apps.length) {
-//   firebase.initializeApp(firebaseConfig);
-// } else {
-//   firebase.app(); // if already initialized, use that one
-// }
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 export default firebase;
