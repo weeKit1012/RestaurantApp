@@ -3,48 +3,20 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { padding } from "styled-system";
 import firebase from "../../scenes/login/FirebaseConfig";
+import { unixToLocale } from "../../utils/TimeConverter";
 const styles = StyleSheet.create({
-  bookItem: {
-    flexDirection: "row",
-    backgroundColor: "#FFFFFF",
-    borderBottomColor: "#AAAAAA",
-    borderBottomWidth: 2,
-    padding: 5,
-    height: 175,
-  },
-  cover: { flex: 1, height: 150, resizeMode: "contain" },
-  info: {
-    flex: 3,
-    alignItems: "flex-end",
-    flexDirection: "column",
-    alignSelf: "center",
-    padding: 20,
-  },
-  orderID: { fontSize: 18, marginBottom: 5, fontWeight: "bold" },
-  CustomerID: { fontSize: 18, marginBottom: 5 },
-  tableLocation: { fontSize: 18, marginBottom: 10 },
-  foodComment: {
-    fontSize: 12,
-    marginBottom: 5,
-    fontStyle: "italic",
-    color: "#a6a6a6",
-  },
-  sectionHeader: {
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 14,
-    fontWeight: "bold",
-    backgroundColor: "rgba(193, 250, 35,1.0)",
-  },
-
-  cardLayout: {
-    flexDirection: "row",
-    padding: 10,
-    height: 150,
-    flex: 1,
-    margin: 5,
+ 
+  orderID: { fontSize: 12, marginBottom: 5, fontWeight:'bold' },
+  CustomerID: { fontSize: 12, marginBottom: 5 },
+  tableLocation: { fontSize: 12, marginBottom: 10 },
+  foodComment:{ fontSize:8, marginBottom:5, fontStyle:'italic', color:'#a6a6a6'},
+ 
+  cardLayout:{
+    flexDirection: "horizontal",
+    padding:10,
+    height:150,
+    flex:1,
+    margin:5,
   },
 
   kitchenCardContainer: {
@@ -58,21 +30,35 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 15,
   },
-
-  cardText: {
-    flex: 0.4,
-  },
 });
 
 const PastOrderitem = ({ order }) => {
-  const [completionDate, setCompletionDate] = useState("");
-  const [customer, setCustomer] = useState("");
-  const [orderID, setOrderID] = useState("");
-  useEffect(() => {
-    try {
-      getData();
-    } catch (error) {}
-  }, []);
+    const [table, setTable] = useState("");
+    useEffect(() => {
+      try {
+        getTable();
+      } catch (error) {}
+    }, []);
+  
+    const getTable = async () => {
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(order.userId)
+        .get()
+        .then((documentSnapshot) => {
+          let obj = documentSnapshot.data();
+  
+          setTable(obj.table);
+        });
+    };
+  
+    return (
+        <View style={styles.kitchenCardContainer}>
+        <View style={styles.cardLayout}>
+            <Text style={styles.orderID}>OrderID: {order.id} </Text>
+            <Text style={styles.CustomerID}>CustomerID: {order.userId}</Text>
+            <Text style={styles.foodComment}>Complete at: {unixToLocale(order.orderCompletedTime)} for table no: {table}</Text>            
 
   const getData = async () => {
     await firebase
@@ -89,15 +75,44 @@ const PastOrderitem = ({ order }) => {
       });
   };
 
-  return (
-    <View style={styles.kitchenCardContainer}>
-      <View style={styles.cardLayout}>
-        <Text style={styles.orderID}>OrderID: {orderID} </Text>
-        <Text style={styles.CustomerID}>CustomerID: {customer}</Text>
-        <Text style={styles.tableLocation}>Complete at: {completionDate}</Text>
-      </View>
-    </View>
-  );
-};
+  const PastOrderitemDecline = ({ order }) => {
+    // const [completionDate, setCompletionDate] = useState("");
+    // const [customer, setCustomer] = useState("");
+    // const [orderID, setOrderID] = useState("");
+    // const [reason, setReason] = useState("");
+    // useEffect(() => {
+    //   try {
+    //     getData();
+    //   } catch (error) {}
+    // }, []);
+  
+    // const getData = async () => {
+    //   await firebase
+    //     .firestore()
+    //     .collection("users")
+    //     .doc(order.userId)
+    //     .get()
+    //     .then((documentSnapshot) => {
+    //       let obj = documentSnapshot.data();
+    //       setCompletionDate(obj.table);
+    //       setCustomer(order.userId);
+    //       setOrderID(order.orderCreatedTime);
+    //       setReason(order.rejectReason);
+    //     });
+    // };
+  
+    return (
+        <View style={styles.kitchenCardContainer}>
+        <View style={styles.cardLayout}>
+            <Text style={styles.orderID}>OrderID: {order.id} </Text>
+            <Text style={styles.CustomerID}>CustomerID: {order.userId}</Text>
+            <Text style={styles.foodComment}>Reason: {order.rejectReason}</Text>            
+
+        </View></View>
+    );
+  };
+
+export {PastOrderitem, PastOrderitemDecline};
+
 
 export default PastOrderitem;

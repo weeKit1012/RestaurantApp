@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View,TouchableOpacity, StyleSheet, FlatList, Alert, Image } from "react-native";
 import firebase from "../login/FirebaseConfig";
-
-// import sty from "_styles";
-import sty from "../../styles";
+import { unixToLocale } from "../../utils/TimeConverter";
+import { useToast } from "react-native-styled-toast";
 import Styles from "../../styles/kitchenStyling"
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
-import { styles } from "styled-system";
 
 
 const CurrentOrderDetail = ({ navigation }) => {
   const order = navigation.getParam("order");
-  const orderId = navigation.getParam("orderId");
   const userId = navigation.getParam("userId");
   const [foodList, setFoodList] = useState([]);
+  const orderId = order.id
+  const { toast } = useToast();
   useEffect(() => {
     const tempArray = [];
     order.orderFoods.forEach((id) => {
@@ -24,50 +22,55 @@ const CurrentOrderDetail = ({ navigation }) => {
           .doc(id)
           .get()
           .then((documentSnapshot) => {
-            let obj = documentSnapshot.data();
+            let obj = documentSnapshot.data();            
             obj.id = id;
             tempArray.push(obj);
             setFoodList(tempArray);
+
           });
       }
-
       fetchData();
+      
     });
   }, []);
 
 
+
   const updateOrderStatus = async () => {
-    
+    const increment = firebase.firestore.FieldValue.increment(1);
     let currentTime = "";
     currentTime = Math.floor(new Date().getTime() / 1000.0);
+    order.orderFoods.forEach((id) => {
+      async function fetchData() {
+        await firebase
+          .firestore()
+          .collection("foods")
+          .doc(id)
+          .update({foodPopularity: increment})
+          .then(() => {
+            toast({ message: "This order status is updated" });
+          });
+          }
+          fetchData();
+    });
 
     await firebase
       .firestore()
       .collection("orders")
       .doc(order.id)
-      .update({ orderStatus: "2", orderCompletedTime: currentTime })
-      .then(() => {
+      .update({ orderStatus: "2", orderCompletedTime: currentTime})
+      .then(() => {      
         navigation.goBack();
       });
   }
 
-  const declineOrderStatus = async () => { 
-    let reason = "Rejected by Kitchen side";
-    await firebase
-      .firestore()
-      .collection("orders")
-      .doc(order.id)
-      .update({ orderStatus: "4", rejectReason: reason })
-      .then(() => {
-        console.log("Order rejected");
-        navigation.goBack();
-      });
-  }
+
 
   return (
     <SafeAreaView style={Styles.kitchenOrderContainer}>
+      <View style={{flex:0.9}}>
       <View style={Styles.kitchenDetailsOrderHeaderContainer}>
-      <Text style={{fontSize:24, fontWeight:'bold'}}>Order Id: {JSON.stringify(orderId)} </Text>
+      <Text style={{fontSize:24, fontWeight:'bold'}}>Order Id: {order.id} </Text>
       <Text style={{fontSize:24, fontWeight:'bold'}}>CustomerID: {JSON.stringify(userId)} </Text>
       </View>
       
@@ -94,67 +97,62 @@ const CurrentOrderDetail = ({ navigation }) => {
 
       <View style={{flex:0.3}}>
         <Text style={{fontSize:24, fontWeight:'bold'}}>Total Price: RM {order.orderTotal} </Text>
-        <View style = {{flexDirection:'row', alignContent:'center', justifyContent:'center'}}>
-            {order.orderStatus == "1" ? (
+            <View
+          style={{
+            flex: 1.5,
+            alignItems: "center",
+            backgroundColor: "transparent",
+            flexDirection:'row', alignContent:'center', justifyContent:'center'
+          }}
+        >
+          {order.orderStatus == "1" ? (
             <View style={{flexDirection:"row"}}>
             <TouchableOpacity
-            style={StyleLocal.button }
+            style={Styles.kitchenButton }
               onPress={updateOrderStatus}
-              
             >
-              <Text style={StyleLocal.buttonText}>
+              <Text style={Styles.kitchenButtonText}>
                 Proceed Order
               </Text>
             </TouchableOpacity>
             
+
             <TouchableOpacity
-              style={StyleLocal.buttonReject }
-              onPress={declineOrderStatus}>
-              <Text style={StyleLocal.buttonText}>
+            style={Styles.buttonReject }
+                  onPress={() => {
+                    navigation.navigate("DeclineScreen", {
+                      orderID: orderId,
+                      userID: userId,
+                    });
+                  }}
+                >
+                  <Text style={Styles.kitchenButtonText}>
                 Decline Order
               </Text>
-            </TouchableOpacity>
+                </TouchableOpacity>
             </View>
-            
           ) : (
-            <Text>This order is completed</Text>
+            <View />
           )}
-
+          {order.orderStatus == "3" ? (
+            <Text style={{fontSize:18}}>This order was completed at {unixToLocale(order.orderCompletedTime)}</Text>
+          ) : (
+            <View/>
+          )}
+          {order.orderStatus == "4" ? (
+            <View>
+            <Text style={{fontSize:18}}>This order was decline</Text>
+            <Text style={{fontSize:18}}>Cancel reason : {order.rejectReason}</Text>
             </View>
+          ) : (
+            <View/>
+          )}
+        </View>
+      </View>
       </View>
 </SafeAreaView>
   );
 };
 
-const StyleLocal = StyleSheet.create({
-  button: {
-    height: 60,
-    width: 250,
-    backgroundColor: "#f98640",
-    paddingHorizontal: 0,
-    paddingVertical: 0,
-    borderRadius: 40,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonReject: {
-    height: 60,
-    width: 250,
-    backgroundColor: "red",
-    paddingHorizontal: 0,
-    paddingVertical: 0,
-    borderRadius: 40,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    fontFamily: "inter-bold",
-    color: "#fff",
-    justifyContent: "center",
-    fontSize: 20,
-  },
-});
 
 export default CurrentOrderDetail;
