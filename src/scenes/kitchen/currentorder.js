@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, SectionList, View, TouchableOpacity, FlatList } from "react-native";
+import { Text,  View, TouchableOpacity, FlatList } from "react-native";
 import sty from "../../styles";
 import { useToast } from "react-native-styled-toast";
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import firebase from "../login/FirebaseConfig";
-
+import { MaterialIcons} from "@expo/vector-icons";
 
 import OrderItem from "../../components/kitchen/CurrentOrderComponent"; //file 
 
-
-
-
 const KitchenCurrentOrderTab = ({ navigation }) => {
   const { toast } = useToast();
-  const [userId, setuserId] = useState("");
-  const [orderId, setorderId] = useState("");
   const [orderList, setOrderList] = useState([]);
 
   KitchenCurrentOrderTabNavigation = navigation;
-
   useEffect(() => {
-    try {
-      var handle = setInterval(getOrderList, 2000);
-
-      return () => {
-        clearInterval(handle);
-      };
-    } catch (error) {}
-  }, []);
+    getOrderList();
+}, []);
 
   const getOrderList = async () => {
     // console.log("called");
@@ -40,7 +27,9 @@ const KitchenCurrentOrderTab = ({ navigation }) => {
         const orderArray = [];
         querySnapshot.forEach((documentSnapshot) => {
           var obj = documentSnapshot.data();
+          var id = documentSnapshot.id;
           obj.id = documentSnapshot.id;
+
           orderArray.push(obj);
         });
         setOrderList(orderArray);
@@ -49,7 +38,21 @@ const KitchenCurrentOrderTab = ({ navigation }) => {
 
 return(
   <View style={sty.container}>
-    <Text style={{ marginLeft:15, fontSize:24, fontWeight:'bold', marginBottom:15}}>Click the order to proceed it</Text>
+    <View style={{flexDirection:'row'}}>
+    <Text style={{ marginLeft:15, fontSize:24, fontWeight:'bold', marginBottom:15, justifyContent:'flex-start'}}>Click the order to proceed it</Text>
+    <MaterialIcons.Button
+                name="refresh"
+                size={24}
+                color="black"
+                backgroundColor="transparent"
+                borderRadius={20}
+                onPress={() => {
+                  getOrderList();
+                }}
+              />
+                         
+            </View>        
+
     <View style={{flex:0.9}}>
      <FlatList
             showsVerticalScrollIndicator={false}
@@ -61,7 +64,7 @@ return(
                   onPress={() => {
                     navigation.navigate("CurrentOrderDetailTab", {
                       order: item,
-                      orderId: item.orderCreatedTime,
+                      orderId: item.orderID,
                       userId: item.userId
                     });
                   }}
@@ -73,10 +76,8 @@ return(
           /></View>
   </View>
 );
-
   
 };
-
 
 export let KitchenCurrentOrderTabNavigation = {};
 export default KitchenCurrentOrderTab;

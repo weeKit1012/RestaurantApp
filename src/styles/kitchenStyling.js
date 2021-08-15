@@ -86,6 +86,50 @@ kitchenOrderContainer: {
     margin: 5,
 
   },
+
+  kitchenButton: {
+    height: 60,
+    width: 250,
+    backgroundColor: "#f98640",
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    borderRadius: 40,
+    margin: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+ 
+  kitchenButtonText: {
+    fontFamily: "inter-bold",
+    color: "#fff",
+    justifyContent: "center",
+    fontSize: 20,
+  },
+  buttonReject: {
+    height: 60,
+    width: 250,
+    backgroundColor: "red",
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    borderRadius: 40,
+    margin: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  kitchenTextInput: {
+    alignSelf: "stretch",
+    padding: 10,
+    paddingBottom: 5,
+    marginLeft: 0,
+    borderBottomColor: "#474747",
+    margin: 5,
+    marginRight: 0,
+    borderBottomWidth: 2, 
+
+    fontFamily: "inter-regular",
+    fontSize: 18,
+  },
 })
 
 export default Styles;

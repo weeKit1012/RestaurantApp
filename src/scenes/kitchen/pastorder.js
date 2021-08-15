@@ -1,31 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, View,TouchableOpacity, StyleSheet, FlatList, Alert, Image } from "react-native";
+import { SafeAreaView, Text, View,TouchableOpacity,  FlatList } from "react-native";
 import firebase from "../login/FirebaseConfig";
-
+import {MaterialIcons} from "@expo/vector-icons";
 import sty from "../../styles";
-import Styles from "../../styles/kitchenStyling"
-import global from "../login/Global";
-import PastOrderitem from "../../components/kitchen/PastOrderComponent"; 
+
+import {PastOrderitem, PastOrderitemDecline} from "../../components/kitchen/PastOrderComponent"; 
 
 
-
-
-const KitchenPastOrderTab = ({ navigation }) => {
-  const [userId, setuserId] = useState("");
-  const [orderId, setorderId] = useState("");
+const KitchenPastOrderTab = ({ navigation, Component }) => {
   const [completeOrderList, setCompleteOrderList] = useState([]);
   const [declineOrderList, setDeclineOrderList] = useState([]);
   KitchenPastOrderTabNavigation = navigation;
 
   useEffect(() => {
-    try {
-      var handle = setInterval(getOrderList, 2000);
-
-      return () => {
-        clearInterval(handle);
-      };
-    } catch (error) {}
-  }, []);
+    getOrderList();
+}, []);
+  
 
   const getOrderList = async () => {
     await firebase
@@ -53,18 +43,34 @@ const KitchenPastOrderTab = ({ navigation }) => {
         querySnapshot.forEach((documentSnapshot) => {
           var obj = documentSnapshot.data();
           obj.id = documentSnapshot.id;
-          orderArray.push(obj);
+          orderArray.push(obj)
         });
-        setDeclinerOrderList(orderArray);
+        setDeclineOrderList(orderArray);
       });
   };
 
+  //add the button to load it
  return(
   <View style={sty.container}>
-    <Text style={{ marginLeft:15, fontSize:24, fontWeight:'bold', marginBottom:15}}>Click the order to proceed it</Text>
-    <View style={{flex:1, flexDirection:"row"}}>
+    <View style={{flexDirection:'row'}}>
+
+<Text style={{ marginLeft:15, fontSize:24, fontWeight:'bold', marginBottom:5, justifyContent:'flex-start'}}>Click the order to proceed it</Text>
+<MaterialIcons.Button
+            name="refresh"
+            size={24}
+            color="black"
+            backgroundColor="transparent"
+            borderRadius={20}
+            onPress={() => {
+              getOrderList();
+            }}
+          />
+                     
+        </View>
+    <View style={{flexDirection:"row"}}>
       <View style={{flex:0.5, padding: 20}}>
-        <Text>Completed Order</Text>
+        <Text style={{fontSize:24, margin:10}}>Completed Order</Text>
+        <View style={{flexDirection:"column", flex:0.7}}>
       <FlatList
             showsVerticalScrollIndicator={false}
             data={completeOrderList}
@@ -75,7 +81,7 @@ const KitchenPastOrderTab = ({ navigation }) => {
                   onPress={() => {
                     navigation.navigate("CurrentOrderDetailTab", {
                       order: item,
-                      orderId: item.orderCreatedTime,
+                      orderId: item.orderID,
                       userId: item.userId
                     });
                   }}
@@ -85,11 +91,12 @@ const KitchenPastOrderTab = ({ navigation }) => {
               );
             }}
           />
-      </View>
+      </View></View>
 
       
       <View style={{flex:0.5, padding: 20}}>
-      <Text>Rejected Order</Text>
+      <Text style={{fontSize:24, margin:15}}>Rejected Order</Text>
+      <View style={{flexDirection:"column", flex:0.7}}>
       <FlatList
             showsVerticalScrollIndicator={false}
             data={declineOrderList}
@@ -100,16 +107,17 @@ const KitchenPastOrderTab = ({ navigation }) => {
                   onPress={() => {
                     navigation.navigate("CurrentOrderDetailTab", {
                       order: item,
-                      orderId: item.orderCreatedTime,
+                      orderId: item.orderID,
                       userId: item.userId
                     });
                   }}
                 >
-                  <PastOrderitem order={item} />
+                  <PastOrderitemDecline order={item} />
                 </TouchableOpacity>
               );
             }}
           />
+          </View>
       </View>
     </View>
   </View>
